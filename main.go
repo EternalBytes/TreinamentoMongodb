@@ -2,10 +2,8 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -38,17 +36,15 @@ func main() {
 		check(err)
 	}()
 
-	ping(client, ctx)
-	listDBs(client, ctx)
-
 	// create db, collections and documents
 	quickstartDatabase := client.Database("quickstart")
 	podecastsCollection := quickstartDatabase.Collection("podcasts")
 	episodesCollection := quickstartDatabase.Collection("episodes")
 
-	//delFromId(podecastsCollection, ctx, "6728ffb8c2ada2bd4b7a864f")
+	getAllDocs(episodesCollection, ctx)
+	getOneDoc(podecastsCollection, ctx, "67292905b4f97f60eacb27c1")
 
-	podcastResult, err := podecastsCollection.InsertOne(ctx, bson.D{
+	/* podcastResult, err := podecastsCollection.InsertOne(ctx, bson.D{
 		{Key: "title", Value: "The polyglot developer podcast"},
 		{Key: "author", Value: "Nic Raboy"},
 		{Key: "tags", Value: bson.A{"development", "programming", "coding"}},
@@ -74,6 +70,6 @@ func main() {
 	check(err)
 
 	fmt.Println(episodeResult.InsertedIDs...)
-
+	*/
 	// https://www.youtube.com/watch?v=WEYtAKYbB6k&list=PL7nSMdzIjUOr27j_kTjask5hyOD1Fh8OB&index=3
 }

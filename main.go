@@ -23,7 +23,7 @@ func check(err error) {
 func main() {
 	// SERVER API AND CLIENT OTIONS
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	/// REMOTE CLUSTER - mongodb+srv://mayconrodrigues1:aqtb96b3@cluster0.94uofif.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+	
 	opts := options.Client().ApplyURI("mongodb://mayconpr:012345@localhost:27017/?authMechanism=SCRAM-SHA-1&authSource=quickstart").SetServerAPIOptions(serverAPI)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
